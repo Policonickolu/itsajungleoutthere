@@ -31,10 +31,32 @@ source venv/bin/activate
 
 pip install -r requirements.txt
 
+python setup.py develop
 python init_shema.py
 python itsajungleoutthere/app.py 
 
 ```
+
+the page ```http://localhost:8888/api/``` should open with a detailed Swagger page with all available queries from the REST API.
+
+```
+GET		/images/							get all images with pagination
+POST	/images/							upload image
+GET		/images/:id 						get image from id
+DELETE	/images/:id 						delete image from id
+PUT 	/images/:id 						modify image from id
+GET 	/images/:image_id/tags 				get all tags of the image from image_id
+PUT 	/images/:image_id/tags/:tag_id 		add tag tag_id to the image image_id
+
+GET		/tags/								get all tags with pagination
+POST	/tags/								upload tag
+GET		/tags/:id 							get tag from id
+DELETE	/tags/:id 							delete tag from id
+PUT 	/tags/:id 							modify tag from id
+GET 	/tags/:tag_id/images 				get all images with the tag tag_id with pagination
+```
+
+A REST API uri have to be resources oriented, and not actions oriented. that's why there is no key word as "all" or "add" or "new"
 
 ## Open question
 
