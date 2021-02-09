@@ -13,22 +13,16 @@ ns = api.namespace('datasets', description='Operations related to datasets')
 
 
 @ns.route('/')
-class ImageCollection(Resource):
+class DatasetCollection(Resource):
 
 	@api.marshal_list_with(dataset)
 	def get(self):
-		"""
-		Returns list of datasets.
-		"""
-		categories = Dataset.query.all()
-		return categories
+		datasets = Dataset.query.all()
+		return datasets
 
 	@api.response(201, 'Dataset successfully created.')
 	@api.expect(dataset)
 	def post(self):
-		"""
-		Creates a new dataset.
-		"""
 		data = request.json
 		create_dataset(data)
 		return None, 201
@@ -36,39 +30,20 @@ class ImageCollection(Resource):
 
 @ns.route('/<int:id>')
 @api.response(404, 'Dataset not found.')
-class ImageItem(Resource):
+class DatasetItem(Resource):
 
 	@api.marshal_with(dataset)
 	def get(self, id):
-		"""
-		Returns a dataset with a list of posts.
-		"""
 		return Dataset.query.filter(Dataset.id == id).one()
 
 	@api.expect(dataset)
 	@api.response(204, 'Dataset successfully updated.')
 	def put(self, id):
-		"""
-		Updates a dataset.
-
-		* Send a JSON object with the new name in the request body.
-
-		```
-		{
-		"name": "New Dataset Name"
-		}
-		```
-
-		* Specify the ID of the dataset to modify in the request URL path.
-		"""
 		data = request.json
 		update_dataset(id, data)
 		return None, 204
 
 	@api.response(204, 'Dataset successfully deleted.')
 	def delete(self, id):
-		"""
-		Deletes dataset.
-		"""
 		delete_dataset(id)
 		return None, 204

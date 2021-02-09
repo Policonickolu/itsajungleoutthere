@@ -4,7 +4,7 @@ from itsajungleoutthere.database.models.dataset import Dataset
 def create_dataset(data):
 	name = data.get('name')
 	images = data.get('images')
-	dataset = Dataset(name, images)
+	dataset = Dataset(name)
 	db.session.add(dataset)
 	db.session.commit()
 
