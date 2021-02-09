@@ -7,8 +7,10 @@ exemple an image can be labeled with "Dog" if there is a dog in the image.
 
 ## Context
 
-I never used Flask before but I didn't do the test in node, I found some tutorial and examples.
-I tried to do the bonus with dataset and label, before removing them.
+I never used Flask before but I didn't do the test in node, I found some tutorial and examples with Flask and SQLAlchemy.
+I tried to do all the bonuses from the start with dataset and label, because it was easy for me to implement REST API in PHP or node.js.
+But I wasn't proficient with Flask+SQLAlchemy and didn't do know how to handle labels and tags "many to many" relationship (does the tags have to be created when we create a new label ?).
+I removed dataset and label models to at least do the mandatory part of the test.
 
 ## User Stories:
 1. AADS (As a Data Scientist) I can upload an image, it stores a url, a name, a
